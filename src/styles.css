@@ -1,0 +1,158 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    margin: 35px 75px;
+}
+
+.navigation-link {
+  padding-right: 16px;
+}
+
+#headerContainer {
+    padding-bottom: 40px;
+}
+
+h1, h2, #headerItem {
+    text-align: center;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+#gridContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 10px;
+}
+
+.grid-item {
+    background-color: darkseagreen;
+    text-align: center;
+    border-radius: 25px;
+    padding: 20px;
+}
+
+blockquote {
+    background: #8ebc8f69;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+  }
+
+/* CODE */
+pre {
+  background: #232d2a;
+  color: #fafbfc;
+  border-radius: 8px;
+  border-top: black solid 15px;
+  overflow-x: auto;
+  min-height: 100px;
+  padding: 16px 35px 35px 20px;
+}
+
+#installationItem pre {
+    min-height: min-content;
+}
+
+code {
+    background-color: lightgray;
+}
+
+pre > code {
+    background-color: transparent;
+}
+
+pre > code::before {
+  background-color: #4c615b;
+  border-radius: 3px;
+  border-left: 3px solid #4c615b;
+  border-right: 3px solid #4c615b;
+  content: attr(class);
+  text-indent: -9.2ch;
+  text-transform: uppercase;
+  display: block;
+  padding: 2px 2px;
+  margin-bottom: 16px;
+  width: fit-content;
+  overflow: hidden;
+}
+
+
+
+
+
+.hljs-comment,
+.hljs-quote {
+  color: #d4d0ab;
+}
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+  color: #ffa07a;
+}
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+  color: #f5ab35;
+}
+.hljs-attribute {
+  color: #ffd700;
+}
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+  color: #abe338;
+}
+.hljs-title,
+.hljs-section {
+  color: #00e0e0;
+}
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #dcc6e0;
+}
+.hljs {
+  display: block;
+  overflow-x: auto;
+  background: #2b2b2b;
+  color: #f8f8f2;
+  padding: 0.5em;
+}
+.hljs-emphasis {
+  font-style: italic;
+}
+.hljs-strong {
+  font-weight: bold;
+}
+
+dl {
+  display: none;
+}
+
+table {
+  border: 3px solid darkseagreen;
+}
+
+td, th {
+  border: 1px solid black;
+  padding: 5px 4px;
+}
+
+thead {
+  background: darkseagreen;
+}

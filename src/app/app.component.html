@@ -1,0 +1,3 @@
+<a class="navigation-link" *ngFor="let route of routes$ | async" [routerLink]="route.route">{{ route.title }}</a>
+<a class="navigation-link" href="https://github.com/jtcrowson/scully-homepage">Source Code</a>
+<router-outlet></router-outlet>
