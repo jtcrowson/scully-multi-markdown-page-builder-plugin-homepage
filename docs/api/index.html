@@ -1,0 +1,181 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Scully 1.0.0-beta.0">
+  <meta charset="utf-8">
+  <title>ScullyHomepage</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="styles.2435b9400c5e292d78d5.css"><style></style><style>
+      :host {
+        display: none;
+      }
+      scully-content {
+        display: none;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+<body scully-version="1.0.0-beta.0">
+  <app-root _nghost-uxh-c7="" ng-version="9.1.12"><a _ngcontent-uxh-c7="" class="navigation-link" href="/">Demo Homepage</a><a _ngcontent-uxh-c7="" class="navigation-link" href="/docs/api">API Docs</a><a _ngcontent-uxh-c7="" class="navigation-link" href="/docs/license">License</a><!----><a _ngcontent-uxh-c7="" href="https://github.com/jtcrowson/scully-homepage" class="navigation-link">Source Code</a><router-outlet _ngcontent-uxh-c7=""></router-outlet><app-docs><!--scullyContent-begin--><h2 id="functions">Functions</h2>
+<dl>
+<dt><a href="#createMultipleMarkdownSection">createMultipleMarkdownSection(markdownFileSources, extras)</a> ⇒</dt>
+<dd><p>Creates a section of a page from multiple markdown files, and adds the passed css selectors for inserting layout customization.</p>
+<p>Example markdown source files:</p>
+<pre class="prettyprint source lang-md"><code>// ./sourceDir/file1.md
+# First Markdown Title Content
+</code></pre>
+<pre class="prettyprint source lang-md"><code>// ./sourceDir/file2.md
+# Second Markdown Title Content
+</code></pre>
+<p>Example usage:</p>
+<pre class="prettyprint source lang-typescript"><code>export const config: ScullyConfig = {
+  // ...
+  routes: {
+    '/path': {
+      type: MultiMarkdownPageBuilderPlugin,
+      sectionBuilders: [
+        createMultipleMarkdownSection(['./sourceDir/file1.md', './sourceDir/file2.md'], { containerDivId: 'gridContainer', elementsDivClass: 'grid-item' })
+      ]
+    }
+  }
+};
+</code></pre>
+<p>Example output:</p>
+<pre class="prettyprint source lang-html"><code>&lt;div id=&quot;gridContainer&quot;>
+ &lt;div id=&quot;element1&quot; class=&quot;grid-item&quot;>
+     &lt;h1>First Markdown Title Content&lt;/h1>
+ &lt;/div>
+ &lt;div id=&quot;element2&quot; class=&quot;grid-item&quot;>
+     &lt;h1>Second Markdown Title Content&lt;/h1>
+ &lt;/div>
+&lt;/div>
+</code></pre></dd>
+<dt><a href="#createSingleMarkdownSection">createSingleMarkdownSection(markdownFileSource, extras)</a> ⇒</dt>
+<dd><p>Creates a section of a page from a single markdown file, and adds the passed css selectors for inserting layout customization.</p>
+<p>Example markdown source file:</p>
+<pre class="prettyprint source lang-md"><code># Markdown Title Content
+</code></pre>
+<p>Example usage:</p>
+<pre class="prettyprint source lang-typescript"><code>export const config: ScullyConfig = {
+  // ...
+  routes: {
+    '/path': {
+      type: MultiMarkdownPageBuilderPlugin,
+      sectionBuilders: [
+        createSingleMarkdownSection('./homepage/installation.md', { containerDivId: 'installationContainer', elementDivId: 'installationItem' }),
+      ]
+    }
+  }
+};
+</code></pre>
+<p>Example output:</p>
+<pre class="prettyprint source lang-html"><code>&lt;div id=&quot;installationContainer&quot;>
+ &lt;div id=&quot;installationItem&quot;>
+     &lt;h1>Markdown Title Content&lt;/h1>
+ &lt;/div>
+&lt;/div>
+</code></pre></dd>
+</dl>
+
+<p><a name="createMultipleMarkdownSection"></a></p>
+<h2 id="createmultiplemarkdownsectionmarkdownfilesources-extras-⇒">createMultipleMarkdownSection(markdownFileSources, extras) ⇒</h2>
+<p>Creates a section of a page from multiple markdown files, and adds the passed css selectors for inserting layout customization.</p>
+<p>Example markdown source files:</p>
+<pre class="prettyprint source lang-md"><code>// ./sourceDir/file1.md
+# First Markdown Title Content
+</code></pre>
+<pre class="prettyprint source lang-md"><code>// ./sourceDir/file2.md
+# Second Markdown Title Content
+</code></pre>
+<p>Example usage:</p>
+<pre class="prettyprint source lang-typescript"><code>export const config: ScullyConfig = {
+  // ...
+  routes: {
+    '/path': {
+      type: MultiMarkdownPageBuilderPlugin,
+      sectionBuilders: [
+        createMultipleMarkdownSection(['./sourceDir/file1.md', './sourceDir/file2.md'], { containerDivId: 'gridContainer', elementsDivClass: 'grid-item' })
+      ]
+    }
+  }
+};
+</code></pre>
+<p>Example output:</p>
+<pre class="prettyprint source lang-html"><code>&lt;div id=&quot;gridContainer&quot;>
+ &lt;div id=&quot;element1&quot; class=&quot;grid-item&quot;>
+     &lt;h1>First Markdown Title Content&lt;/h1>
+ &lt;/div>
+ &lt;div id=&quot;element2&quot; class=&quot;grid-item&quot;>
+     &lt;h1>Second Markdown Title Content&lt;/h1>
+ &lt;/div>
+&lt;/div>
+</code></pre>
+
+<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <p>A <code>MarkdownSectionBuilder</code> that will be used by the plugin to create the single markdown section.</p>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>markdownFileSources</td>
+<td><code>Array.&lt;string&gt;</code></td>
+<td><p>source of the markdown files to be converted into HTML, then passed into the pageBuilder</p></td>
+</tr>
+<tr>
+<td>extras</td>
+<td><code>SingleMarkdownSectionBuilderExtras</code></td>
+<td><p>The <code>containerIdAttribute</code> will be attached as the <code>id</code> attribute value for the container div.  The <code>elementsDivClass</code> will be attached as the <code>class</code> attribute value for the interior element div.  Passing <code>null</code> for either will omit the selector.</p></td>
+</tr>
+</tbody></table>
+<p><a name="createSingleMarkdownSection"></a></p>
+<h2 id="createsinglemarkdownsectionmarkdownfilesource-extras-⇒">createSingleMarkdownSection(markdownFileSource, extras) ⇒</h2>
+<p>Creates a section of a page from a single markdown file, and adds the passed css selectors for inserting layout customization.</p>
+<p>Example markdown source file:</p>
+<pre class="prettyprint source lang-md"><code># Markdown Title Content
+</code></pre>
+<p>Example usage:</p>
+<pre class="prettyprint source lang-typescript"><code>export const config: ScullyConfig = {
+  // ...
+  routes: {
+    '/path': {
+      type: MultiMarkdownPageBuilderPlugin,
+      sectionBuilders: [
+        createSingleMarkdownSection('./homepage/installation.md', { containerDivId: 'installationContainer', elementDivId: 'installationItem' }),
+      ]
+    }
+  }
+};
+</code></pre>
+<p>Example output:</p>
+<pre class="prettyprint source lang-html"><code>&lt;div id=&quot;installationContainer&quot;>
+ &lt;div id=&quot;installationItem&quot;>
+     &lt;h1>Markdown Title Content&lt;/h1>
+ &lt;/div>
+&lt;/div>
+</code></pre>
+
+<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <p>A <code>MarkdownSectionBuilder</code> that will be used by the plugin to create the single markdown section.</p>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>markdownFileSource</td>
+<td><code>string</code></td>
+<td><p>source of the markdown file to be converted into HTML, then passed into the pageBuilder</p></td>
+</tr>
+<tr>
+<td>extras</td>
+<td><code>SingleMarkdownSectionBuilderExtras</code></td>
+<td><p>The <code>containerIdAttribute</code> will be attached as the <code>id</code> attribute value for the container div.  The <code>elementIdAttribute</code> will be attached as the <code>id</code> attribute value for the interior element div.  Passing <code>null</code> for either will omit the selector.</p></td>
+</tr>
+</tbody></table>
+<!--scullyContent-end--><script>try {window['scullyContent'] = {cssId:"",html:document.body.innerHTML.split('<!--scullyContent-begin-->')[1].split('<!--scullyContent-end-->')[0]};} catch(e) {console.error('scully could not parse content');}</script><scully-content></scully-content></app-docs><!----></app-root>
+<script id="ScullyIO-transfer-state"></script>
+
+</body></html>

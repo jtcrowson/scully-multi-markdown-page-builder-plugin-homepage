@@ -1,0 +1,111 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Scully 1.0.0-beta.0">
+  <meta charset="utf-8">
+  <title>ScullyHomepage</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="styles.2435b9400c5e292d78d5.css"><style></style><script charset="utf-8" src="5-es2015.a133d439fcacb49b4ddd.js"></script><style>
+      :host {
+        display: none;
+      }
+      scully-content {
+        display: none;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+<body scully-version="1.0.0-beta.0">
+  <app-root _nghost-wwx-c7="" ng-version="9.1.12"><a _ngcontent-wwx-c7="" class="navigation-link" href="/">Demo Homepage</a><a _ngcontent-wwx-c7="" class="navigation-link" href="/docs/api">API Docs</a><a _ngcontent-wwx-c7="" class="navigation-link" href="/docs/license">License</a><!----><a _ngcontent-wwx-c7="" href="https://github.com/jtcrowson/scully-homepage" class="navigation-link">Source Code</a><router-outlet _ngcontent-wwx-c7=""></router-outlet><app-docs><!--scullyContent-begin--><div id="headerContainer"><div id="headerItem"><h1 id="scully-multi-markdown-page-builder-plugin">Scully Multi Markdown Page Builder Plugin</h1>
+<p>A <a href="https://scully.io/docs/plugins/">Scully Plugin</a> for creating a static page from multiple markdown files.</p>
+<p>This page was created from nine markdown files and some CSS!  <strong>No HTML.</strong> 🙌</p>
+</div></div><div id="gridContainer"><div id="element1" class="grid-item"><p><img src="assets/scully-logo.png" alt=""></p>
+<h3 id="one-markdown-file">One Markdown File</h3>
+<p>The content of this grid element is sourced from <code>homepage/markdownFile1.md</code>.</p>
+</div><div id="element2" class="grid-item"><p><img src="assets/angular-logo.png" alt=""></p>
+<h3 id="another-markdown-file">Another Markdown File</h3>
+<p>The content of this grid element is sourced from <code>homepage/markdownFile2.md</code>.</p>
+</div><div id="element3" class="grid-item"><p><img src="assets/markdown-logo.png" alt=""></p>
+<h3 id="a-third-markdown-file">A Third Markdown File</h3>
+<p>The content of this grid element is sourced from <code>homepage/markdownFile3.md</code>.</p>
+</div></div><div id="installationContainer"><div id="installationItem"><h2 id="installation">Installation</h2>
+<pre><code class="language-bash">npm install --save-dev scully-multi-markdown-page-builder-plugin</code></pre>
+<pre><code class="language-typescript"><span class="hljs-keyword">import</span> {
+    MultiMarkdownPageBuilderPlugin,
+    MultiMarkdownPageBuilderPluginConfig
+} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;scully-multi-markdown-page-builder-plugin&#x27;</span>;
+
+<span class="hljs-keyword">const</span> pluginConfig: MultiMarkdownPageBuilderPluginConfig = {
+    sectionBuilders: [
+        <span class="hljs-comment">// add section builders (MarkdownSectionBuilder[])...</span>
+    ]
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> config: ScullyConfig = {
+  <span class="hljs-comment">// ...</span>
+  routes: {
+    <span class="hljs-string">&#x27;/homepage&#x27;</span>: {
+      <span class="hljs-keyword">type</span>: MultiMarkdownPageBuilderPlugin,
+      pluginConfig
+    }
+  }
+};</code></pre>
+</div></div><div><div><h2 id="usage">Usage</h2>
+<p>The <code>MultiMarkdownPageBuilderPlugin</code> consists of a route plugin and a render plugin.</p>
+<h3 id="route-plugin">Route Plugin</h3>
+<p>The route plugin takes a configuration that conforms to the <code>MultiMarkdownPageBuilderPluginConfig</code> interface.  The configuration takes in an array of <code>MarkdownSectionBuilder</code>s, with each element responsible for creating a separate portion of the overall page.</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">const</span> multiMarkdownPageBuilderPluginConfig: MultiMarkdownPageBuilderPluginConfig = {
+  sectionBuilders: [
+    createSingleMarkdownSection(
+        <span class="hljs-string">&#x27;./homepage/header.md&#x27;</span>, 
+        { 
+            containerDivId: <span class="hljs-string">&#x27;headerContainer&#x27;</span>, 
+            elementDivId: <span class="hljs-string">&#x27;headerItem&#x27;</span> 
+        }
+    ),
+    createMultipleMarkdownSection(
+        [
+            <span class="hljs-string">&#x27;./homepage/markdownFile1.md&#x27;</span>, 
+            <span class="hljs-string">&#x27;./homepage/markdownFile2.md&#x27;</span>, 
+            <span class="hljs-string">&#x27;./homepage/markdownFile3.md&#x27;</span>
+        ], 
+        { 
+            containerDivId: <span class="hljs-string">&#x27;gridContainer&#x27;</span>, 
+            elementsDivClass: <span class="hljs-string">&#x27;grid-item&#x27;</span> 
+        }
+    )
+  ]
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> config: ScullyConfig = {
+  <span class="hljs-comment">// ...</span>
+  routes: {
+    <span class="hljs-string">&#x27;/docs/:slug&#x27;</span>: {
+      <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;contentFolder&#x27;</span>,
+      slug: {
+        folder: <span class="hljs-string">&quot;./docs&quot;</span>
+      },
+      postRenderers: [DisableAngular]
+    },
+    <span class="hljs-string">&#x27;&#x27;</span>: {
+      <span class="hljs-keyword">type</span>: MultiMarkdownPageBuilderPlugin,
+      multiMarkdownPageBuilderPluginConfig
+    }
+  }
+};</code></pre>
+<h4 id="using-a-markdownsectionbuilder">Using a <code>MarkdownSectionBuilder</code></h4>
+<p>The library ships with two <code>MarkdownSectionBuilder</code> creator functions that produce common <code>MarkdownSectionBuilder</code> configurations, <code>createSingleMarkdownSection</code> and <code>createMultipleMarkdownSection</code>.  The former is for creating a single section of the page using a single markdown file, and the latter is for creating a single section of the page using multiple markdown files.  The latter is useful for creating a grid appearance, with content from multiple markdown files side-by-side.  Both creator functions takes in some css property names for styling customization.  See more in the <a href="docs/api">API Documentation</a>.</p>
+<p>Creating your own <code>MarkdownSectionBuilder</code> is easy.  Here is a custom one that highlights the word &quot;hightlight&quot; in a markdown file by wrapping the word in a <code>mark</code> tag.</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">const</span> highlightBuilderExample: MarkdownSectionBuilder = {
+  pageBuilder: <span class="hljs-function">(<span class="hljs-params">markdownHtmls: <span class="hljs-built_in">string</span>[]</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> markdownHtml = markdownHtmls[<span class="hljs-number">0</span>];
+    <span class="hljs-keyword">return</span> markdownHtml.replace(<span class="hljs-regexp">/highlight/gi</span>, <span class="hljs-function"><span class="hljs-params">hightlight</span> =&gt;</span> <span class="hljs-string">`&lt;mark&gt;<span class="hljs-subst">${hightlight}</span>&lt;/mark&gt;`</span>);
+  },
+  markdownFileSources: [<span class="hljs-string">&#x27;./homepage/highlightExample.md&#x27;</span>],
+  extras: {}
+}</code></pre>
+</div></div><p>Here is the result of using the above <code>MarkdownSectionBuilder</code>:</p>
+<blockquote>
+<p>Only <mark>highlight</mark> certain words.</p>
+</blockquote>
+<div><div><h3 id="render-plugin">Render Plugin</h3>
+<p>This plugin takes the section builders from the <code>MultiMarkdownPageBuilderPluginConfig</code> and converts the markdown files provided in each <code>markdownFileSources</code> array to a pre-rendered HTML array. The HTML array is then passed to each section builder&#39;s <code>pageBuilder</code> function, which is responsible for adding any custom HTML.</p>
+<p>This plugin finds the <code>&lt;scully-content&gt;</code> tag, and it injects the HTML as its previous sibling(s).</p>
+</div></div><!--scullyContent-end--><script>try {window['scullyContent'] = {cssId:"",html:document.body.innerHTML.split('<!--scullyContent-begin-->')[1].split('<!--scullyContent-end-->')[0]};} catch(e) {console.error('scully could not parse content');}</script><script>try {window['scullyContent'] = {cssId:"",html:document.body.innerHTML.split('
