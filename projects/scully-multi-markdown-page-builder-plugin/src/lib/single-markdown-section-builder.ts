@@ -34,13 +34,13 @@ export interface SingleMarkdownSectionBuilderExtras {
  *  </div>
  * </div>
  * ```
- * @param {string} markdownFileSource source of the markdown file to be converted into HTML, then passed into the pageBuilder
+ * @param {string} markdownFileSource source of the markdown file to be converted into HTML, then passed into the sectionBuilder
  * @param {SingleMarkdownSectionBuilderExtras} extras The `containerIdAttribute` will be attached as the `id` attribute value for the container div.  The `elementIdAttribute` will be attached as the `id` attribute value for the interior element div.  Passing `null` for either will omit the selector.
  * @returns A `MarkdownSectionBuilder` that will be used by the plugin to create the single markdown section.
  */
 export function createSingleMarkdownSection(markdownFileSource: string, extras: SingleMarkdownSectionBuilderExtras): MarkdownSectionBuilder {
     return {
-        pageBuilder: (markdownHtmls: string[]) => {
+        sectionBuilder: (markdownHtmls: string[]) => {
             const containerIdAttribute = extras.containerDivId === null ? '' : ` id="${extras.containerDivId}"`;
             const elementIdAttribute = extras.elementDivId === null ? '' : ` id="${extras.elementDivId}"`;
             return `<div${containerIdAttribute}><div${elementIdAttribute}>${markdownHtmls[0]}</div></div>`

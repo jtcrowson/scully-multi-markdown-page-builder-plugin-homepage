@@ -6,8 +6,8 @@ export const routerValidator = async (config: MultiMarkdownPageBuilderPluginConf
         return [`Missing a sectionBuilders array in the ${MultiMarkdownPageBuilderPluginName} config.`];
     } else {
         return config.sectionBuilders.reduce((errors, sectionBuilder) => {
-            if (sectionBuilder.pageBuilder === undefined || !(sectionBuilder.pageBuilder instanceof Function)) {
-                errors.push(`Missing pageBuilder function type in section builder: ${sectionBuilder}`);
+            if (sectionBuilder.sectionBuilder === undefined || !(sectionBuilder.sectionBuilder instanceof Function)) {
+                errors.push(`Missing sectionBuilder function type in section builder: ${sectionBuilder}`);
             }
             if (sectionBuilder.markdownFileSources === undefined || !Array.isArray(sectionBuilder.markdownFileSources)) {
                 errors.push(`Missing markdownFileSources array type in section builder: ${sectionBuilder}`);

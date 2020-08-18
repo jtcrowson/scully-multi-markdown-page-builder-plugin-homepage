@@ -42,13 +42,13 @@ export interface MultipleMarkdownSectionBuilderExtras {
  *  </div>
  * </div>
  * ```
- * @param {string[]} markdownFileSources source of the markdown files to be converted into HTML, then passed into the pageBuilder
+ * @param {string[]} markdownFileSources source of the markdown files to be converted into HTML, then passed into the sectionBuilder
  * @param {SingleMarkdownSectionBuilderExtras} extras The `containerIdAttribute` will be attached as the `id` attribute value for the container div.  The `elementsDivClass` will be attached as the `class` attribute value for the interior element div.  Passing `null` for either will omit the selector.
  * @returns A `MarkdownSectionBuilder` that will be used by the plugin to create the single markdown section.
  */
 export function createMultipleMarkdownSection(markdownFileSources: string[], extras: MultipleMarkdownSectionBuilderExtras): MarkdownSectionBuilder {
     return {
-        pageBuilder: (markdownHtmls: string[]) => {
+        sectionBuilder: (markdownHtmls: string[]) => {
             let markdownFileIndex = 1;
             const combinedMarkdownHtml = markdownHtmls.reduce((combined, currentMarkdownHtml) =>  {
                 const idAttribute = ` id="element${markdownFileIndex++}"`;

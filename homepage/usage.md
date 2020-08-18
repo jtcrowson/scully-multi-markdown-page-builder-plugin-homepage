@@ -1,4 +1,4 @@
-## Usage
+## Plugin Breakdown
 
 The `MultiMarkdownPageBuilderPlugin` consists of a route plugin and a render plugin.
 
@@ -48,19 +48,8 @@ export const config: ScullyConfig = {
 };
 ```
 
-#### Using a `MarkdownSectionBuilder`
+### Render Plugin
 
-The library ships with two `MarkdownSectionBuilder` creator functions that produce common `MarkdownSectionBuilder` configurations, `createSingleMarkdownSection` and `createMultipleMarkdownSection`.  The former is for creating a single section of the page using a single markdown file, and the latter is for creating a single section of the page using multiple markdown files.  The latter is useful for creating a grid appearance, with content from multiple markdown files side-by-side.  Both creator functions takes in some css property names for styling customization.  See more in the [API Documentation](docs/api).
+This plugin takes the section builders from the `MultiMarkdownPageBuilderPluginConfig` and converts the markdown files provided in each `markdownFileSources` array to a pre-rendered HTML array. The HTML array is then passed to each section builder's `sectionBuilder` function, which is responsible for adding any custom HTML.
 
-Creating your own `MarkdownSectionBuilder` is easy.  Here is a custom one that highlights the word "hightlight" in a markdown file by wrapping the word in a `mark` tag.
-
-```typescript
-const highlightBuilderExample: MarkdownSectionBuilder = {
-  pageBuilder: (markdownHtmls: string[]) => {
-    const markdownHtml = markdownHtmls[0];
-    return markdownHtml.replace(/highlight/gi, hightlight => `<mark>${hightlight}</mark>`);
-  },
-  markdownFileSources: ['./homepage/highlightExample.md'],
-  extras: {}
-}
-```
+This plugin finds the `<scully-content>` tag, and it injects the HTML as its previous sibling(s).

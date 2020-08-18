@@ -2,11 +2,11 @@
 
 A Scully Plugin for creating a static page from multiple markdown files.
 
-For documentation, see:
-- [Installation](installation.md)
-- [Router Plugin](routerPluginUsage.md)
-- [Render Plugin](renderPluginUsage.md)
-- [Creating a custom section builder](hightlightExample.md)
+Documentation: https://jtcrowson.github.io/scully-multi-markdown-page-builder-plugin-homepage/
+
+## Installation
+
+`npm install --save-dev scully-multi-markdown-page-builder-plugin`
 
 ## Build
 
@@ -18,7 +18,7 @@ After building your library with `ng build scully-multi-markdown-page-builder-pl
 
 ## Running unit tests
 
-Run `ng test scully-multi-markdown-page-builder-plugin` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test scully-multi-markdown-page-builder-plugin` to execute the unit tests via Jest.
 
 ## Further help
 

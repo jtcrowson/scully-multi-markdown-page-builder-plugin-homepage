@@ -8,7 +8,7 @@ module.exports = {
     setupFilesAfterEnv: ['<rootDir>/src/test.ts'],
     collectCoverage: true,
     coverageReporters: ['html'],
-    coverageDirectory: 'coverage/scully-homepage',
+    coverageDirectory: 'coverage/scully-multi-markdown-page-builder-plugin-homepage',
     moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths || {}, {
         prefix: '<rootDir>/'
     })

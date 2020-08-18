@@ -3,7 +3,12 @@
 body {
     font-family: 'Helvetica', 'Arial', sans-serif;
     background-color: #f9f9f9;
+}
+
+@media only screen and (min-width: 768px) {
+  body {
     margin: 35px 75px;
+  }
 }
 
 .navigation-link {
@@ -19,8 +24,15 @@ h1, h2, #headerItem {
 }
 
 img {
-    width: 100px;
-    height: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+
+.grid-item img {
+  width: 100px;
+  height: 100px;
 }
 
 #gridContainer {
@@ -48,7 +60,6 @@ pre {
   background: #232d2a;
   color: #fafbfc;
   border-radius: 8px;
-  border-top: black solid 15px;
   overflow-x: auto;
   min-height: 100px;
   padding: 16px 35px 35px 20px;

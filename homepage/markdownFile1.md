@@ -2,4 +2,4 @@
 
 ### One Markdown File
 
-The content of this grid element is sourced from `homepage/markdownFile1.md`.
+The content of this grid element is sourced from [markdownFile1.md](markdownFile1.md).

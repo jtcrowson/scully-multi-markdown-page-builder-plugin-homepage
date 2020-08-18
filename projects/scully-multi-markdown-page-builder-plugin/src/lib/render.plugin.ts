@@ -50,7 +50,7 @@ export async function renderPlugin(html: string, route: HandledRoute) {
         let markdownHtml = parse(originalFile, options);
         markdownHtmls.push(markdownHtml);
       }
-      additionalHTML = additionalHTML + builder.pageBuilder(markdownHtmls)
+      additionalHTML = additionalHTML + builder.sectionBuilder(markdownHtmls)
     }
     
     const htmlWithNgAttr = addNgIdAttribute(additionalHTML, attr);

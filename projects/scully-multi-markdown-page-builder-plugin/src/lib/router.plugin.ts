@@ -6,12 +6,13 @@ export function routerPlugin(
     route: string,
     config: MultiMarkdownPageBuilderPluginConfig
   ): Promise<HandledRoute[]> {
+    const additionalPostRenderers = config.postRenderers ? config.postRenderers : [];
     const routes: HandledRoute[] = [
       {
         type: MultiMarkdownPageBuilderPluginName,
         route: route === '' ? '/' : route,
         config,
-        postRenderers: [MultiMarkdownPageBuilderPluginName],
+        postRenderers: [MultiMarkdownPageBuilderPluginName, ...additionalPostRenderers],
         title: config.title
       }
     ]

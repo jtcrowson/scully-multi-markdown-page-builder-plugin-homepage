@@ -103,7 +103,7 @@ title: API Docs
 
 | Param | Type | Description |
 | --- | --- | --- |
-| markdownFileSources | <code>Array.&lt;string&gt;</code> | <p>source of the markdown files to be converted into HTML, then passed into the pageBuilder</p> |
+| markdownFileSources | <code>Array.&lt;string&gt;</code> | <p>source of the markdown files to be converted into HTML, then passed into the sectionBuilder</p> |
 | extras | <code>SingleMarkdownSectionBuilderExtras</code> | <p>The <code>containerIdAttribute</code> will be attached as the <code>id</code> attribute value for the container div.  The <code>elementsDivClass</code> will be attached as the <code>class</code> attribute value for the interior element div.  Passing <code>null</code> for either will omit the selector.</p> |
 
 <a name="createSingleMarkdownSection"></a>
@@ -139,5 +139,5 @@ title: API Docs
 
 | Param | Type | Description |
 | --- | --- | --- |
-| markdownFileSource | <code>string</code> | <p>source of the markdown file to be converted into HTML, then passed into the pageBuilder</p> |
+| markdownFileSource | <code>string</code> | <p>source of the markdown file to be converted into HTML, then passed into the sectionBuilder</p> |
 | extras | <code>SingleMarkdownSectionBuilderExtras</code> | <p>The <code>containerIdAttribute</code> will be attached as the <code>id</code> attribute value for the container div.  The <code>elementIdAttribute</code> will be attached as the <code>id</code> attribute value for the interior element div.  Passing <code>null</code> for either will omit the selector.</p> |

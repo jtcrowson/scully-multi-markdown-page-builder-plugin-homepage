@@ -12,8 +12,9 @@ import {
 
 const pluginConfig: MultiMarkdownPageBuilderPluginConfig = {
     sectionBuilders: [
-        // add section builders (MarkdownSectionBuilder[])...
-    ]
+        // add multiple markdown section builders (MarkdownSectionBuilder[])...
+    ],
+    title: 'Home' // Optional title to be made available through the ScullyRouteService
 }
 
 export const config: ScullyConfig = {
@@ -21,8 +22,13 @@ export const config: ScullyConfig = {
   routes: {
     '/homepage': {
       type: MultiMarkdownPageBuilderPlugin,
-      pluginConfig
+      ...pluginConfig
     }
   }
 };
+```
+
+```HTML
+<!-- At route defined in ScullyConfig -->
+<scully-content></scully-content>
 ```

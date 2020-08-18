@@ -2,4 +2,4 @@
 
 A [Scully Plugin](https://scully.io/docs/plugins/) for creating a static page from multiple markdown files.
 
-This page was created from nine markdown files and some CSS!  **No HTML.** 🙌
+**This page was created from multiple markdown files and some CSS!  No HTML.** 🙌
