@@ -10,5 +10,6 @@
       "highlight.js": "highlight.js",
       "fs": "fs"
     }
-  }
+  },
+  "whitelistedNonPeerDependencies": ["."]
 }

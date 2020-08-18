@@ -1,15 +1,15 @@
 {
   "name": "scully-multi-markdown-page-builder-plugin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "peerDependencies": {
-    "@scullyio/scully": "^1.0.0-beta.0",
+    "@scullyio/scully": "^1.0.0-beta.0"
+  },
+  "dependencies": {
+    "tslib": "^1.10.0",
     "jsdom": "^16.3.0",
     "marked": "^1.1.1",
     "@types/marked": "^1.1.0",
     "highlight.js": "^10.1.1"
-  },
-  "dependencies": {
-    "tslib": "^1.10.0"
   },
   "keywords": [
     "angular",

@@ -1,6 +1,6 @@
 {
   "name": "scully-multi-markdown-page-builder-plugin-homepage",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
