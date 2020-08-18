@@ -4,7 +4,7 @@
   <base href="/scully-multi-markdown-page-builder-plugin-homepage/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="stylesheet" href="styles.d14d78f0be7abdead27b.css"><style></style><script charset="utf-8" src="5-es2015.423c6b72f0fa2cdfb3b1.js"></script><style>
+<link rel="stylesheet" href="styles.a24b26682d7214245452.css"><style></style><script charset="utf-8" src="5-es2015.423c6b72f0fa2cdfb3b1.js"></script><style>
       :host {
         display: none;
       }
@@ -13,7 +13,7 @@
       }
     </style><script>window['ScullyIO']='generated';</script></head>
 <body scully-version="1.0.0-beta.0">
-  <app-root _nghost-vlj-c6="" ng-version="9.1.12"><a _ngcontent-vlj-c6="" class="navigation-link" href="">Demo Homepage</a><a _ngcontent-vlj-c6="" class="navigation-link" href="docs/api">API Docs</a><a _ngcontent-vlj-c6="" class="navigation-link" href="docs/license">License</a><!----><a _ngcontent-vlj-c6="" href="https://github.com/jtcrowson/scully-multi-markdown-page-builder-plugin-homepage" class="navigation-link">Source Code</a><router-outlet _ngcontent-vlj-c6=""></router-outlet><app-docs><!--scullyContent-begin--><div id="headerContainer"><div id="headerItem"><h1 id="scully-multi-markdown-page-builder-plugin">Scully Multi Markdown Page Builder Plugin</h1>
+  <app-root _nghost-vwt-c6="" ng-version="9.1.12"><a _ngcontent-vwt-c6="" class="navigation-link" href="">Demo Homepage</a><a _ngcontent-vwt-c6="" class="navigation-link" href="docs/api">API Docs</a><a _ngcontent-vwt-c6="" class="navigation-link" href="docs/license">License</a><!----><a _ngcontent-vwt-c6="" href="https://github.com/jtcrowson/scully-multi-markdown-page-builder-plugin-homepage" class="navigation-link">Source Code</a><router-outlet _ngcontent-vwt-c6=""></router-outlet><app-docs><!--scullyContent-begin--><div id="headerContainer"><div id="headerItem"><h1 id="scully-multi-markdown-page-builder-plugin">Scully Multi Markdown Page Builder Plugin</h1>
 <p>A <a href="https://scully.io/docs/plugins/">Scully Plugin</a> for creating a static page from multiple markdown files.</p>
 <p>This page was created from eight markdown files and some CSS!  <strong>No HTML.</strong> 🙌</p>
 </div></div><div id="gridContainer"><div id="element1" class="grid-item"><p><img src="assets/scully-logo.png" alt=""></p>
@@ -48,27 +48,21 @@
     }
   }
 };</code></pre>
+<pre><code class="language-HTML"><span class="hljs-comment">&lt;!-- At route defined in ScullyConfig --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">scully-content</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">scully-content</span>&gt;</span></code></pre>
 </div></div><div><div><h2 id="overview">Overview</h2>
 <p>The plugin works by accepting multiple markdown section builders (<code>MarkdownSectionBuilder[]</code>) and displaying each section in order, stacked on a single page.</p>
-<pre><code class="language-diagram">|------------------------|
-| MarkdownSectionBuilder |
-|------------------------|
-| MarkdownSectionBuilder |
-|------------------------|
-| MarkdownSectionBuilder |
-|------------------------|
-|          ...           |
-|------------------------|</code></pre>
-<p>For each section builder, the plugin will accept multiple markdown file paths, and convert each file to HTML using the marked library.  </p>
+<p><img src="assets/markdown-section-builder-diagram.png" alt="Overview Diagram">  </p>
 <p>A markdown section builder is defined as follows:</p>
 <pre><code class="language-typescript"><span class="hljs-keyword">interface</span> MarkdownSectionBuilder {
   markdownFileSources: <span class="hljs-built_in">string</span>[];
   sectionBuilder: <span class="hljs-function">(<span class="hljs-params">markdownHtmls: <span class="hljs-built_in">string</span>[]</span>) =&gt;</span> <span class="hljs-built_in">string</span>;
   extras: <span class="hljs-built_in">any</span>;
 }</code></pre>
-<p>The plugin will take markdown file paths (<code>markdownFileSources</code>), convert the content of each markdown file into HTML, and pass the array of resulting HTML strings to the provided <code>sectionBuilder</code> function.</p>
-<p>The <code>sectionBuilder</code> function is responsible for combining multiple resulting HTML strings (<code>markdownHtmls</code>) into a single HTML string and returning it.  The returned string is then combined to create the final page.</p>
+<p>Each <code>MarkdownSectionBuilder</code> accepts multiple markdown file paths (<code>markdownFileSources</code>), each of which are compiled into HTML by the plugin, and then passed as an array of HTML strings to the provided <code>sectionBuilder</code> function.</p>
+<p>The <code>sectionBuilder</code> function is responsible for combining the HTML strings (<code>markdownHtmls</code>) into a single HTML string, performing any additional post processing on the HTML, then returning it.  The returned string is then combined with the results of any other <code>MarkdownSectionBuilder</code> to create the final page.  The final page HTML is inserted into the <code>scully-content</code> tag provided by the Scully Library.</p>
 <p>The <code>extras</code> property is available for any additional properties that need to be made available to the <code>sectionBuilder</code> function.</p>
+<p><img src="assets/plugin-diagram.png" alt="Markdown Section Builder Dataflow Diagram"> </p>
 <h3 id="example">Example</h3>
 <p>Here is an example <code>MarkdownSectionBuilder</code> that highlights the word &quot;hightlight&quot; in a converted markdown file by wrapping the word in a <code>mark</code> tag.</p>
 <pre><code class="language-typescript"><span class="hljs-keyword">const</span> highlightBuilderExample: MarkdownSectionBuilder = {
@@ -83,8 +77,8 @@
 <blockquote>
 <p>Only <mark>highlight</mark> certain words.</p>
 </blockquote>
-<div><div><h3 id="markdownsectionbuilders-made-easy-creator-functions">MarkdownSectionBuilders Made Easy: Creator Functions</h3>
-<p>The library ships with two <code>MarkdownSectionBuilder</code> creator functions that produce common <code>MarkdownSectionBuilder</code> configurations, <code>createSingleMarkdownSection</code> and <code>createMultipleMarkdownSection</code>.  The former is for creating a single section of the page using a single markdown file, and the latter is for creating a single section of the page using multiple markdown files.  The latter is useful for creating a grid appearance, with content from multiple markdown files side-by-side.  Both creator functions takes in some css property names for styling customization.  </p>
+<div><div><h3 id="creator-functions">Creator Functions</h3>
+<p>The library ships with two creator functions that return common <code>MarkdownSectionBuilder</code> configurations, without having to define your own <code>sectionBuilder</code>.  The two creator functions are <code>createSingleMarkdownSection</code> and <code>createMultipleMarkdownSection</code>.  The former is for creating a single section of the page using a single markdown file, and the latter is for creating a single section of the page using multiple markdown files.  The latter is useful for creating a grid appearance, with content from multiple markdown files side-by-side.  Both creator functions accept css property names to enable styling customization.  </p>
 <p><strong>This page was built almost exclusively with these two creator functions.</strong></p>
 <p>See more in the <a href="docs/api">API Documentation</a>.</p>
 </div></div><div><div><h2 id="usage">Usage</h2>
